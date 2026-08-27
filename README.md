@@ -63,15 +63,30 @@ This project demonstrates an enterprise-grade, highly secure Infrastructure-as-a
 
 ### 1. Application Gateway Overview & Frontend Provisioning
 The Application Gateway (appgw-architect-prod) is provisioned across Availability Zones (1, 2, 3) in East US and bound to public frontend IP 20.75.216.164.
+
+![Application Gateway Overview](docs/images/appgw-overview.png)
+
 ### 2. Backend Health Probe Verification
 Custom health probes actively monitor backend health over port 8080. The backend pool target (10.10.1.4) reports a Healthy status.
+
+![Backend Health Probe Status](docs/images/health-probe.png)
+
+
 ### 3. Compute Configuration & Isolation
 vm-app-prod-01 runs Windows Server 2022 Datacenter with complete network isolation (No Public IP assigned).
-### 4. Network Interface & Security Rules
+
+![VM Compute Configuration](docs/images/vm-config.png)
+
+## 4. Network Interface & Security Rules
+![Network Interface & Security Rules Screenshot](docs/images/nsg-rules.png)
 The network interface configuration shows private IP 10.10.1.4 with priority inbound security rule Allow-AppGW-808 attached to nsg-app-prod.
+
 ### 5. Live Application Delivery
+![Live Application Delivery Screenshot](docs/images/live-app-delivery.png)
 The custom portfolio application loaded through the public frontend IP of the Application Gateway.
+
 ## Key Achievements & Security Best Practices
+![Architecture Verification Overview](docs/images/architecture-achievements.png)
  * **Secure Ingress Traffic Routing:** Offloaded external HTTP traffic from the public boundary to isolated backend IIS servers operating on custom port 8080.
  * **Workload Boundary Isolation:** Ensured complete isolation of operational workloads behind Layer 7 gateway reverse proxy rules.
  * **Future Security Hardening:** Evaluated Azure Advisor recommendations to upgrade Application Gateway to WAF_v2 for OWASP top-10 protective filtering at ingress.
